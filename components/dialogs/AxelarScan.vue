@@ -1,5 +1,5 @@
 <template>
-<div class="box" v-if="show">
+<div class="box" v-show="show">
     <div class="loading" v-if="fetching">
         <div class="lds-roller">
             <div></div>
@@ -15,7 +15,13 @@
     <div v-else>
         <h3>Transaction Status</h3>
         <p class="status" v-if="transaction"><b>Status:</b> {{ transaction.status }}</p>
-        <a :href="`https://testnet.axelarscan.io/gmp/${txHash}`" v-if="txHash">{{ txHash }}</a>
+        <a target="_black" :href="`https://testnet.axelarscan.io/gmp/${txHash}`" v-if="txHash">
+            {{
+              txHash.substring(0, 8) +
+              "..." +
+              txHash.substring(txHash.length - 8, txHash.length)
+            }}
+        </a>
         <div class="refresh" v-if="txHash" v-on:click="scan(txHash)">Refresh</div>
     </div>
 </div>
@@ -31,17 +37,17 @@ export default {
             show: false
         }
     },
-    created() {
-        $nuxt.$on('axelar', (txHash) => {
+    mounted() {
+        $nuxt.$on('axelarscan', (txHash) => {
             this.txHash = txHash
-            this.scan(txHash)
             this.show = true
+            this.scan(txHash)
         })
     },
     methods: {
         scan: async function (txHash) {
             this.fetching = true
-            const result = await this.$axelar.scan(txHash)
+            const result = await this.$axelarscan.scan(txHash)
             console.log(result)
             this.transaction = result
             this.fetching = false
@@ -66,6 +72,10 @@ export default {
     padding: 30px;
     border-radius: 20px;
     background: #2C2D3A;
+    border: 1px solid #fff;
+    box-shadow: 5px 5px 10px #2C2D3A;
+    z-index: 30;
+    overflow: hidden;
 }
 
 .loading {

@@ -20,9 +20,9 @@
             <p>Polygon Mumbai</p>
         </div>
 
-        <div class="post scaleable" v-on:click="selectNetwork('fantom')">
+        <div class="post scaleable">
             <img src="/images/fantom.png" alt="">
-            <p>Fantom Testnet</p>
+            <p>Fantom Testnet <span>Soon</span></p>
         </div>
     </div>
 </div>
@@ -36,6 +36,8 @@ export default {
             $nuxt.$emit('release-switch-network')
             $nuxt.$emit('switch-network-to', network)
             this.saveLastNetworkName(network)
+            this.$polygon.init()
+            this.$contracts.initBuidlContract()
         },
 
         saveLastNetworkName: function (name) {

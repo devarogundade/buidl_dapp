@@ -102,9 +102,10 @@
                         </div>
 
                         <div class="action" v-else>
-                            <div class="pay" v-if="!subscription.active" v-on:click="buyCourse()">Buy Course</div>
-                            <router-link v-else :to="`/app/courses/${$route.params.course}`">
-                                <div class="pay">Study Course</div>
+                            <div class="pay" v-if="(!subscription.active) && (!subscribing)" v-on:click="subscribe()">Subscribe</div>
+                            <div class="pay" v-if="(!subscription.active) && (subscribing)">Subscribing</div>
+                            <router-link v-if="(subscription.active) && (!subscribing)" :to="`/app/courses/${$route.params.course}`">
+                                <div class="pay">Watch Content</div>
                             </router-link>
                             <i class="fa-solid fa-heart-circle-plus"></i>
                         </div>
@@ -133,6 +134,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -155,7 +157,9 @@ export default {
             selectedSection: 0,
             selectedNft: null,
             showNfts: false,
-            buidlContract: null
+            buidlContract: null,
+            polygonContract: null,
+            subscribing: false
         }
     },
     async created() {
@@ -174,8 +178,16 @@ export default {
         this.getNfts()
 
         this.$contracts.initBuidlContract(this.$auth.provider)
+        this.$polygon.init(this.$auth.provider)
+
         $nuxt.$on('buidl-contract', (contract) => {
             this.buidlContract = contract
+            console.log('bsc', contract);
+        })
+
+        $nuxt.$on('polygon-contract', (contract) => {
+            this.polygonContract = contract
+            console.log('polygon', contract);
         })
     },
     methods: {
@@ -226,22 +238,51 @@ export default {
             }
         },
 
-        buyCourse: async function () {
-            if (this.buidlContract == null) return
+        subscribe: async function () {
+            console.log(this.polygonContract);
+            if (this.buidlContract == null && this.polygonContract == null) return
+
+            const network = this.$auth.getLastNetworkName() // bsc or polygon
+
             try {
                 let nftId = 0
-                let discount = 0
 
                 if (this.selectedNft != null) {
                     nftId = this.nfts[this.selectedNft].token_id
-                    discount = this.$utils.toWei(this.calcDiscount(this.selectedNft).toString())
                 }
 
-                const trx = await this.buidlContract.subscribe(this.courseId, nftId, {
-                    from: this.$auth.accounts[0]
-                })
+                let trx = null
 
-                $nuxt.$emit('trx', trx.tx)
+                this.subscribing = true
+
+                if (network == 'bsc') {
+                    trx = await this.buidlContract.subscribe(this.courseId, nftId, {
+                        from: this.$auth.accounts[0]
+                    })
+
+                    $nuxt.$emit('trx', trx.tx)
+                    this.subscription.active = true
+                } else if (network == 'polygon') {
+                    const fee = await this.$axelarscan.getEstimate()
+
+                    trx = await this.polygonContract.subscribe(this.courseId, nftId, {
+                        from: this.$auth.accounts[0],
+                        value: fee
+                    })
+
+                    $nuxt.$emit('axelarscan', trx.tx)
+                    this.subscription.active = true
+                } else {
+                    $nuxt.$emit('failure', {
+                        title: 'Network not found',
+                        message: 'Switch a to different network'
+                    })
+                    this.subscribing = false
+                    return
+                }
+
+                this.subscribing = false
+
                 $nuxt.$emit('success', {
                     title: 'Subscription successful',
                     message: 'You can now access this content'

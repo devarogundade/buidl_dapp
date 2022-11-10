@@ -2,7 +2,7 @@ import Vue from "vue"
 import WalletConnectProvider from "@walletconnect/web3-provider"
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 
-export default ({ app }, inject) => {
+export default ({}, inject) => {
     inject('auth', Vue.observable({
         provider: null,
         accounts: [],
@@ -274,43 +274,10 @@ export default ({ app }, inject) => {
             }
         },
 
-        switchToFantomTestnet: async function() {
-            try {
-                await window.ethereum.request({
-                    method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: '0x61' }],
-                });
-            } catch (error) {
-                if (error.code === 4902) {
-                    try {
-                        await window.ethereum.request({
-                            method: 'wallet_addEthereumChain',
-                            params: [{
-                                chainId: '0x61',
-                                chainName: 'Fantom - Testnet',
-                                nativeCurrency: {
-                                    name: 'Fantom',
-                                    symbol: 'FTM', // 2-6 characters long
-                                    decimals: 18
-                                },
-                                blockExplorerUrls: ['https://testnet.ftmscan.com'],
-                                rpcUrls: ['https://fantom-testnet.public.blastapi.io'],
-                            }, ],
-                        });
-                    } catch (addError) {
-                        console.error(addError);
-                    }
-                }
-            }
-        },
-
         switchToNetwork: async function(name) {
             switch (name) {
                 case 'polygon':
                     this.switchToPolygonMumbai()
-                    break
-                case 'fantom':
-                    this.switchToFantomTestnet()
                     break
                 default:
                     this.switchToBinanceTestnet()

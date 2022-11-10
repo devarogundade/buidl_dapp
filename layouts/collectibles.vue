@@ -18,6 +18,8 @@
     <Error />
     <Success />
     <Failure />
+    <AxelarScan />
+    <Transaction />
 </div>
 </template>
 

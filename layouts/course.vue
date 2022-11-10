@@ -20,6 +20,7 @@
     <Error />
     <Success />
     <Failure />
+     <Transaction />
 </div>
 </template>
 

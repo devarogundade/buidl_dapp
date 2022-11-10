@@ -104,10 +104,7 @@ export default {
                 "courseId",
                 "==",
                 this.courseId
-            );
-            if (this.sections.length > 0) {
-                this.loadSectionFile(this.sections[0]);
-            }
+            )
         },
 
         refund: async function () {
