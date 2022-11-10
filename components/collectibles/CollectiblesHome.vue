@@ -55,7 +55,7 @@
 
             <div class="item" v-show="certificates.length > 0" v-for="(certificate, index) in certificates" :key="index">
                 <div class="image">
-                    <embed :src="toJson(certificate.attributes)[0].src" alt="" class="embed" />
+                    <embed :src="toJson(certificate.metadata).attributes[0].value" alt="" class="embed" />
                 </div>
                 <div class="certificate">
                     <ul>
@@ -67,10 +67,10 @@
                         </li>
                     </ul>
                 </div>
-                <a target="_blank" :href="`https://testnets.opensea.io/assets/bsc-testnet/${certificate.token_address}/${certificate.token_id}`">
+                <a target="_blank" :href="`https://testnet.bscscan.com/token/${certificate.token_address}?a=${certificate.token_id}#inventory`">
                     <div class="action">
                         <div class="stake">
-                            Opensea <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            View on Explorer <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </div>
                     </div>
                 </a>
@@ -158,6 +158,7 @@ export default {
         getCertificates: async function () {
             if (this.$auth.accounts.length == 0) return;
             const certificates = await this.$nft.getCertificates(this.$auth.accounts[0]);
+            console.log(certificates);
             if (certificates != null) {
                 this.certificates = certificates;
             }

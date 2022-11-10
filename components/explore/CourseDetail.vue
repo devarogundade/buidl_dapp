@@ -113,7 +113,7 @@
 
                 <div class="body">
                     <div class="content">
-                        <h3 class="title">Course content</h3>
+                        <h3 class="title">Video sections</h3>
                         <div class="desc">{{ sections.length }} sections &nbsp; • &nbsp; 6 hours length</div>
 
                         <div class="accordions">

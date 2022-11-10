@@ -1,13 +1,13 @@
 <template>
 <div class="study">
     <div class="refund">
-        <div v-if="unlockedSections < sections.length">
+        <div v-if="unlockedSections.length < sections.length">
             <div class="action" v-if="!refunding" v-on:click="refund()">
                 Refund this course
             </div>
             <div class="action" v-else>Processing...</div>
         </div>
-        <div v-else>
+        <div v-if="unlockedSections.length >= sections.length">
             <div class="action mint" v-if="!minting" v-on:click="mintCertificate()">
                 Mint Certificate
             </div>
@@ -24,7 +24,9 @@
             <p class="lock unlock" v-if="!unlockedSections.includes(section.sectionId)" v-on:click="viewSection(section.sectionId)">
                 <i class="fa-solid fa-unlock"></i> Unlock
             </p>
-            <p class="lock play" v-else><i class="fa-solid fa-play"></i> Unlocked</p>
+            <p class="lock play" v-else>
+                <i class="fa-solid fa-play"></i> Unlocked
+            </p>
         </div>
     </div>
 
@@ -33,8 +35,11 @@
         <video :src="course.preview" :poster="course.photo" class="player" controls></video>
     </div>
 
-    <div class="premium" v-if="course.price > 0">
-        <p>This is a premium content. You have to use a Buidl Player Application to watch this course.</p>
+    <div class="premium" v-if="course && course.price > 0">
+        <p>
+            This is a premium content. You have to use a Buidl Player Application to
+            watch this sections.
+        </p>
 
         <div class="download">
             <a href="/players/buidl.apk">
@@ -44,7 +49,6 @@
             <p>Download for TV <span>Soon</span></p>
         </div>
     </div>
-
 </div>
 </template>
 
@@ -89,6 +93,7 @@ export default {
 
         getCourse: async function () {
             this.course = await this.$firestore.fetch("courses", this.courseId);
+            console.log(this.course);
             $nuxt.$emit(`course${this.courseId}`, this.course);
             this.fetching = false;
         },
@@ -96,17 +101,17 @@ export default {
         getCourseSections: async function () {
             this.sections = await this.$firestore.fetchAllWhere(
                 "course-sections",
-                'courseId',
-                '==',
+                "courseId",
+                "==",
                 this.courseId
             );
             if (this.sections.length > 0) {
-                this.loadSectionFile(this.sections[0])
+                this.loadSectionFile(this.sections[0]);
             }
         },
 
         refund: async function () {
-            if (this.buidlContract == null || this.$auth.accounts.length == 0) return
+            if (this.buidlContract == null || this.$auth.accounts.length == 0) return;
             this.refunding = true;
 
             try {
@@ -114,17 +119,17 @@ export default {
                     from: this.$auth.accounts[0],
                 });
 
-                $nuxt.$emit('success', {
-                    title: 'Refund successful',
-                    message: 'Your refund was successful'
-                })
+                $nuxt.$emit("success", {
+                    title: "Refund successful",
+                    message: "Your refund was successful",
+                });
 
-                this.$router.push('/app/courses')
+                this.$router.push("/app/courses");
             } catch (error) {
-                $nuxt.$emit("error", "You can't refund this course")
+                $nuxt.$emit("error", "You can't refund this course");
             }
 
-            this.refunding = false
+            this.refunding = false;
         },
 
         getUnlockedSections: async function () {
@@ -152,7 +157,7 @@ export default {
                     }
                 );
 
-                this.getUnlockedSections()
+                this.getUnlockedSections();
             } catch (error) {}
         },
 
@@ -164,6 +169,7 @@ export default {
                 "users",
                 this.$auth.accounts[0].toUpperCase()
             );
+
             if (user == null) {
                 $nuxt.$emit("error", "Set up your profile name first");
                 this.minting = false;
@@ -171,28 +177,34 @@ export default {
             }
 
             const certificate = await Certificate.generateDocument(user.name);
-            const certificateUrl = await this.$ipfs.upload(
-                "certificates",
-                certificate
-            );
+            const certificateUrl = await this.$ipfs.upload("certificates", certificate);
 
             if (certificateUrl == null) {
-                $nuxt.$emit("error", "Failed to upload");
+                $nuxt.$emit("failure", {
+                    title: 'Failed to mint',
+                    message: 'Try again'
+                });
                 return;
             }
 
             const metadataCertificate = {
                 name: this.course.name + " Certificate",
                 description: "This certificate was issued on " + Date(),
-                image: certificateUrl,
+                image: 'https://buidl.netlify.app/images/certificate.jpg',
+                attributes: [{
+                    value: certificateUrl,
+                }],
             };
 
             const metadataUrl = await this.$ipfs.upload(
-                "certificates-metadata",
-                metadataCertificate
+                "certificates", metadataCertificate
             );
+
             if (metadataUrl == null) {
-                $nuxt.$emit("error", "Failed to upload");
+                $nuxt.$emit("failure", {
+                    title: 'Failed to mint',
+                    message: 'Try again'
+                });
                 return;
             }
 
@@ -205,8 +217,13 @@ export default {
                         from: this.$auth.accounts[0],
                     }
                 );
+
+                $nuxt.$emit("trx", trx.tx);
             } catch (error) {
-                $nuxt.$emit("error", "Failed");
+                $nuxt.$emit("failure", {
+                    title: 'Failed to mint',
+                    message: 'Try again'
+                });
             }
 
             this.minting = false;
@@ -396,10 +413,12 @@ export default {
 }
 
 .screen {
-    width: 100%;
+    width: 60%;
+    max-width: 1000px;
     margin-top: 50px;
     border-radius: 20px;
     overflow: hidden;
+    position: relative;
 }
 
 .player {
@@ -430,19 +449,37 @@ export default {
 }
 
 .download p {
-    padding: 16px 20px;
+    width: 350px;
+    max-width: 100%;
+    padding: 20px 24px;
     font-weight: 600;
     color: #fff;
     cursor: pointer;
+    border-bottom: 1px #007aff solid;
     user-select: none;
 }
 
+.download p:nth-child(3) {
+    border: none;
+}
+
 .download span {
-    background: #007aff;
+    background: #ff6370;
     color: #fff;
     font-size: 14px;
     padding: 3px 8px;
     border-radius: 6px;
+}
+
+.screen .tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 20px;
+    border-radius: 10px;
+    background: #007aff;
+    color: #fff;
+    z-index: 2;
 }
 
 @media screen and (max-width: 800px) {
