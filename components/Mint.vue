@@ -38,6 +38,12 @@ export default {
                 const trx = await this.tokenContract.faucetMint({
                     from: this.$auth.accounts[0]
                 })
+
+                $nuxt.$emit('trx', trx.tx)
+                $nuxt.$emit('success', {
+                    title: 'Mint Successful',
+                    message: '5000 BDL on its way!'
+                })
             } catch (error) {
 
             }

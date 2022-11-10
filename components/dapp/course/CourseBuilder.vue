@@ -206,6 +206,12 @@ export default {
                         from: this.$auth.accounts[0],
                     }
                 );
+
+                $nuxt.$emit('trx', trx.tx)
+                $nuxt.$emit('success', {
+                    title: 'Changes saved',
+                    message: 'Saved successfully'
+                })
             } catch (error) {}
 
             this.saving = false;

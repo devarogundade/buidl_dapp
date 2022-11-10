@@ -174,9 +174,14 @@ export default {
                     this.course.name, this.course.description, this.course.photo, this.course.preview, this.course.publish, {
                         from: this.$auth.accounts[0]
                     })
+
+                $nuxt.$emit('trx', trx.tx)
+                $nuxt.$emit('success', {
+                    title: 'Course updated',
+                    message: 'Changes saved'
+                })
                 this.$router.push('/app/courses')
-            } catch (error) {
-            }
+            } catch (error) {}
 
             this.updating = false
         },

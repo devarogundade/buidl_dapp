@@ -9,11 +9,11 @@
             <div class="input">
                 <div class="token">
                     <div class="name">
-                        <img :src="from.image" alt="">
+                        <img :src="from.image" alt="" />
                         <p>{{ from.symbol }}</p>
                     </div>
                 </div>
-                <input type="number" placeholder="0">
+                <input type="number" placeholder="0" />
             </div>
         </div>
 
@@ -29,11 +29,11 @@
             <div class="input">
                 <div class="token">
                     <div class="name">
-                        <img :src="to.image" alt="">
+                        <img :src="to.image" alt="" />
                         <p>{{ to.symbol }}</p>
                     </div>
                 </div>
-                <input type="number" v-model="to.balance" placeholder="0">
+                <input type="number" v-model="to.balance" placeholder="0" />
             </div>
         </div>
 
@@ -41,7 +41,9 @@
             <p>1 BDL = 1 sBDL</p>
         </div>
 
-        <div class="confirm enabled" v-if="to.balance != '' && to.balance > 0" v-on:click="stake()">{{ staking ? 'Staking..' : 'Stake' }}</div>
+        <div class="confirm enabled" v-if="to.balance != '' && to.balance > 0" v-on:click="stake()">
+            {{ staking ? "Staking.." : "Stake" }}
+        </div>
         <div class="confirm" v-else>Stake</div>
         <p class="confirm_desc">Enter an amount to stake and click "Stake"</p>
     </div>
@@ -53,59 +55,71 @@ export default {
     data() {
         return {
             to: {
-                contractAddress: '',
-                symbol: 'sBDL',
+                contractAddress: "",
+                symbol: "sBDL",
                 balance: "0",
-                image: '/favicon.ico'
+                image: "/favicon.ico",
             },
             from: {
-                contractAddress: '',
-                symbol: 'BDL',
+                contractAddress: "",
+                symbol: "BDL",
                 balance: "0",
-                image: '/favicon.ico'
+                image: "/favicon.ico",
             },
             token: null,
             staking: false,
-            buidlContract: null
-        }
+            buidlContract: null,
+        };
     },
     created() {
-        this.getTokenBalances()
+        this.getTokenBalances();
 
-        this.$contracts.initBuidlContract(this.$auth.provider)
-        $nuxt.$on('buidl-contract', (contract) => {
-            this.buidlContract = contract
-        })
+        this.$contracts.initBuidlContract(this.$auth.provider);
+        $nuxt.$on("buidl-contract", (contract) => {
+            this.buidlContract = contract;
+        });
     },
     methods: {
         getTokenBalances: async function () {
-            if (this.$auth.accounts.length == 0) return
-            const response = await this.$token.getTokenBalances(this.$auth.accounts[0])
-            const token = response.filter(_token => _token.token_address.toLowerCase() == process.env.TOKEN_CONTRACT_ADDRESS.toLowerCase())
+            if (this.$auth.accounts.length == 0) return;
+            const response = await this.$token.getTokenBalances(
+                this.$auth.accounts[0]
+            );
+            const token = response.filter(
+                (_token) =>
+                _token.token_address.toLowerCase() ==
+                process.env.TOKEN_CONTRACT_ADDRESS.toLowerCase()
+            );
             if (token.length > 0) {
-                this.token = token[0]
-                this.from.balance = this.token.balance
+                this.token = token[0];
+                this.from.balance = this.token.balance;
             }
         },
         useMax: function () {
-            this.to.balance = this.from.balance
+            this.to.balance = this.from.balance;
         },
         stake: async function () {
-            if (this.buidlContract == null) return
+            if (this.buidlContract == null) return;
 
-            this.staking = true
+            this.staking = true;
 
             try {
                 const trx = await this.buidlContract.stake(
                     this.$utils.toWei(this.to.balance), {
-                        from: this.$auth.accounts[0]
+                        from: this.$auth.accounts[0],
                     }
-                )
+                );
+
+                $nuxt.$emit("trx", trx.tx);
+                $nuxt.$emit("success", {
+                    title: "Stake Successful",
+                    message: "You have stake some BDL tokens",
+                });
             } catch (error) {}
-            this.staking = false
-        }
-    }
-}
+            this.staking = false;
+        },
+    },
+};
 </script>
 
 <style scoped>
@@ -120,7 +134,7 @@ export default {
 .swap {
     width: 450px;
     border-radius: 30px;
-    background: #2C2D3A;
+    background: #2c2d3a;
     padding: 30px;
 }
 
@@ -129,7 +143,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: 30px;
-    color: #8B8CA7;
+    color: #8b8ca7;
 }
 
 .label p:first-child {
@@ -149,7 +163,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 55px;
-    border: 1px #4F5069 solid;
+    border: 1px #4f5069 solid;
     margin-top: 10px;
     padding: 0 20px;
     border-radius: 16px;
@@ -160,13 +174,13 @@ export default {
     justify-content: space-between;
     align-items: center;
     width: 120px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .input .name {
     display: flex;
     align-items: center;
-    font-family: 'regular';
+    font-family: "regular";
     font-weight: 600;
 }
 
@@ -185,10 +199,10 @@ export default {
     outline: none;
     text-align: right;
     font-size: 20px;
-    color: #FFFFFF;
+    color: #ffffff;
     width: 200px;
     max-width: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
 }
 
@@ -200,7 +214,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
     -moz-appearance: textfield;
 }
 
@@ -209,7 +223,7 @@ input[type=number] {
     justify-content: center;
     padding: 30px 0;
     font-size: 30px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .swap-down i {
@@ -226,14 +240,14 @@ input[type=number] {
 
 .rate p {
     margin-right: 20px;
-    color: #8B8CA7;
+    color: #8b8ca7;
     line-height: 16px;
 }
 
 .rate i {
     font-size: 18px;
     cursor: pointer;
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -245,22 +259,22 @@ input[type=number] {
     justify-content: center;
     height: 55px;
     border-radius: 20px;
-    background: #3B3C4E;
-    color: #4F5069;
+    background: #3b3c4e;
+    color: #4f5069;
     font-size: 20px;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .confirm_desc {
     text-align: center;
     font-size: 16px;
-    color: #8B8CA7;
+    color: #8b8ca7;
     margin-top: 10px;
 }
 
 .enabled {
     background: #0177fb;
     cursor: pointer;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 </style>

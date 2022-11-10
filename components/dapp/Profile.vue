@@ -181,6 +181,12 @@ export default {
                 const trx = await this.buidlContract.setAccount(this.user.name, this.user.photo, {
                     from: this.$auth.accounts[0]
                 })
+
+                $nuxt.$emit('trx', trx.tx)
+                $nuxt.$emit('success', {
+                    title: 'Profile Updated',
+                    message: 'Your profile has been updated'
+                })
             } catch (error) {
 
             }

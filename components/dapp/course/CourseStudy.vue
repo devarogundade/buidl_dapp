@@ -7,7 +7,7 @@
             </div>
             <div class="action" v-else>Processing...</div>
         </div>
-        <div v-if="unlockedSections.length >= sections.length">
+        <div v-if="course && course.certificate && (unlockedSections.length >= sections.length)">
             <div class="action mint" v-if="!minting" v-on:click="mintCertificate()">
                 Mint Certificate
             </div>
@@ -158,6 +158,13 @@ export default {
                 );
 
                 this.getUnlockedSections();
+
+                $nuxt.$emit('trx', trx.tx)
+                $nuxt.$emit('success', {
+                    title: 'Section unlocked',
+                    message: 'Section was unlocked successfully'
+                })
+
             } catch (error) {}
         },
 
@@ -219,6 +226,10 @@ export default {
                 );
 
                 $nuxt.$emit("trx", trx.tx);
+                $nuxt.$emit('success', {
+                    title: 'Certificate minted',
+                    message: 'Successful!'
+                })
             } catch (error) {
                 $nuxt.$emit("failure", {
                     title: 'Failed to mint',
