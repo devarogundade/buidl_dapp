@@ -1,0 +1,35 @@
+{
+    "name": "Buidl",
+    "version": "1.0.0",
+    "private": true,
+    "main": "moralis-stream-api/index.js",
+    "scripts": {
+        "dev": "nuxt",
+        "generate": "nuxt generate",
+        "start": "node moralis-stream-api/index.js"
+    },
+    "dependencies": {
+        "@axelar-network/axelar-gmp-sdk-solidity": "^1.3.0",
+        "@axelar-network/axelarjs-sdk": "^0.11.7",
+        "@coinbase/wallet-sdk": "^3.5.3",
+        "@nuxtjs/axios": "^5.13.6",
+        "@openzeppelin/contracts": "^4.7.3",
+        "@pdf-lib/fontkit": "^1.1.1",
+        "@tinymce/tinymce-vue": "^3.2.8",
+        "@truffle/hdwallet-provider": "^2.0.17",
+        "@walletconnect/web3-provider": "^1.8.0",
+        "core-js": "^3.19.3",
+        "express": "^4.18.2",
+        "firebase": "^9.12.0",
+        "firebase-admin": "^11.2.0",
+        "moralis": "^2.6.4",
+        "nuxt": "^2.15.8",
+        "pdf-lib": "^1.17.1",
+        "truffle-contract": "^4.0.31",
+        "truffle-contract-size": "^2.0.1",
+        "vue": "^2.6.14",
+        "vue-server-renderer": "^2.6.14",
+        "vue-template-compiler": "^2.6.14",
+        "webpack": "^4.46.0"
+    }
+}

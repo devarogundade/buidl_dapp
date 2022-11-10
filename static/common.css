@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@font-face {
+    font-family: regular;
+    src: url('/fonts/regular.woff2');
+}
+
+@font-face {
+    font-family: bold;
+    src: url('/fonts/bold.woff2');
+}
+
+@font-face {
+    font-family: black;
+    src: url('/fonts/black.woff2');
+}
+
+@font-face {
+    font-family: clash;
+    src: url('/fonts/clash.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'clash';
+    letter-spacing: 0.05em;
+    transition: .2s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #001731;
+    background-image: url("/images/bg-noise.png");
+}
+
+.nuxt-progress {
+    background: #fff;
+    height: 10px;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.app-width {
+    width: 1800px;
+    max-width: 90%;
+}
+
+.scaleable:hover {
+    transform: scale(1.05, 1.05);
+}
+
+@media screen and (max-width: 800px) {
+    .explain {
+        left: 50% !important;
+        top: 50%;
+    }
+}
