@@ -63,8 +63,7 @@ export default {
         '@/plugins/contracts.js',
         '@/plugins/moralis-apis/ipfs.js',
         '@/plugins/moralis-apis/nft.js',
-        '@/plugins/moralis-apis/token.js',
-        '@/plugins/encryption.js',
+        '@/plugins/moralis-apis/token.js'
     ],
 
     components: {
