@@ -15,14 +15,18 @@
             <p>Binance Testnet</p>
         </div>
 
-        <div class="post scaleable" v-on:click="selectNetwork('polygon')">
-            <img src="/images/polygon.png" alt="">
-            <p>Polygon Mumbai</p>
-        </div>
+        <div class="b-axl">
+            <img class="axl" src="/images/axelar.png" alt="">
 
-        <div class="post scaleable">
-            <img src="/images/fantom.png" alt="">
-            <p>Fantom Testnet <span>Soon</span></p>
+            <div class="post scaleable" v-on:click="selectNetwork('polygon')">
+                <img src="/images/polygon.png" alt="">
+                <p>Polygon Mumbai</p>
+            </div>
+
+            <div class="post scaleable">
+                <img src="/images/fantom.png" alt="">
+                <p>Fantom Testnet <span>(Soon)</span></p>
+            </div>
         </div>
     </div>
 </div>
@@ -143,5 +147,18 @@ export default {
 
 .post img {
     height: 30px;
+}
+
+.axl {
+    height: 50px;
+    margin-bottom: -20px;
+    margin-top: -10px;
+}
+
+.b-axl {
+    border-radius: 16px;
+    border: #FF6370 1px solid;
+    margin-top: 20px;
+    padding: 16px;
 }
 </style>
