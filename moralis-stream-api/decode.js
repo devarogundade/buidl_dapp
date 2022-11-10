@@ -81,7 +81,7 @@ module.exports = {
                     title: data[1],
                     content: data[2],
                     src: data[3],
-                    string: data[4],
+                    thumbnail: data[4],
                     duration: data[5],
                     sectionId: data[6]
                 }

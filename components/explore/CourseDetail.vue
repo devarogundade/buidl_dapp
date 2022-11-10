@@ -126,7 +126,7 @@
                                     <p>{{ (section.duration / 1000) }} seconds</p>
                                 </div>
                                 <div class="back" v-if="selectedSection == index">
-                                    <video src="/videos/sample.mp4"></video>
+                                    <img :src="section.thumbnail" />
                                     <div class="text" v-html="section.content"></div>
                                 </div>
                             </div>
@@ -473,7 +473,7 @@ export default {
     padding: 40px;
 }
 
-.back video {
+.back img {
     width: 100%;
     object-fit: cover;
     height: 400px;

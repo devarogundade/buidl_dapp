@@ -13,7 +13,7 @@
                 <div class="video">
                     <video v-if="sections[selectedIndex].src != ''" :src="sections[selectedIndex].src"></video>
                     <i v-if="sections[selectedIndex].src != ''" class="fa-solid fa-play"></i>
-                    <input v-on:change="chooseThumbnailFile($event)" type="file" />
+                    <input v-on:change="chooseThumbnailFile($event)" accept="image/*" type="file" />
                 </div>
             </div>
 
@@ -22,7 +22,7 @@
                 <div class="video">
                     <video v-if="sections[selectedIndex].src != ''" :src="sections[selectedIndex].src"></video>
                     <i v-if="sections[selectedIndex].src != ''" class="fa-solid fa-play"></i>
-                    <input v-on:change="chooseVideoFile($event)" type="file" />
+                    <input v-on:change="chooseVideoFile($event)" accept="video/*" type="file" />
                 </div>
             </div>
 
@@ -139,7 +139,7 @@ export default {
             if (
                 this.saving ||
                 this.courseContract == null ||
-                this.$auth.accounts == 0
+                this.$auth.accounts.length == 0
             )
                 return;
 
@@ -148,7 +148,7 @@ export default {
             let videoSrc = this.sections[this.selectedIndex].src;
             let thumbnail = this.sections[this.selectedIndex].thumbnail;
 
-            if (this.selectedThumbnail.length == 0 && thumbnail == "") {
+            if (this.selectedThumbnail == null && thumbnail == "") {
                 $nuxt.$emit("failure", {
                     title: "You haven't selected a video file",
                     message: "Required field",
@@ -157,7 +157,7 @@ export default {
                 return;
             }
 
-            if (this.selectedVideo.length == 0 && videoSrc == "") {
+            if (this.selectedVideo == null && videoSrc == "") {
                 $nuxt.$emit("failure", {
                     title: "You haven't selected a video file",
                     message: "Required field",
