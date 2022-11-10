@@ -80,6 +80,8 @@ export default {
         ]
     },
 
+    buildModules: [],
+
     modules: [
         '@nuxtjs/axios',
     ],
