@@ -53,6 +53,12 @@
 </template>
 
 <script>
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL
+} from "firebase/storage";
 export default {
     data() {
         return {
@@ -108,8 +114,8 @@ export default {
 
         switchSection: function (section) {
             this.selectedIndex = section;
-            this.selectedThumbnail = null;
-            this.selectedVideo = null;
+            // this.selectedThumbnail = null;
+            // this.selectedVideo = null;
         },
 
         // sliceFile: async function (file) {
@@ -174,14 +180,6 @@ export default {
                 }
             }
 
-            if (this.selectedVideo != null) {
-                const _base64 = await this.$ipfs.toBase64(this.selectedVideo);
-                const _src = await this.$ipfs.upload(`courses`, _base64);
-                if (_src != null) {
-                    this.sections[this.selectedIndex].src = _src;
-                }
-            }
-
             // const uploadedSrc = [];
 
             // for (let index = 0; index < this.currentSlices.length; index++) {
@@ -195,6 +193,13 @@ export default {
             // }
 
             try {
+                if (this.selectedVideo != null) {
+                    const url = await this.uploadVideo(this.selectedVideo, this.courseId)
+                    if (url != null) {
+                        this.sections[this.selectedIndex].src = url;
+                    }
+                }
+
                 const duration = 6000; // dummy duration
                 const trx = await this.courseContract.createCourseSection(
                     this.courseId,
@@ -234,6 +239,34 @@ export default {
                 this.addSection();
             }
         },
+
+        uploadVideo(file, id) {
+            // Return a promise that will either resolve or emit an error
+            return new Promise((resolve, reject) => {
+                console.log('Uploading video ...');
+
+                const storage = getStorage();
+
+                const storageRef = ref(storage, 'previews/' + id);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    },
+                    (error) => {
+                        console.log(error);
+                        // An error occurred so inform the caller
+                        reject(error);
+                    },
+                    async () => {
+                        const url = await getDownloadURL(uploadTask.snapshot.ref)
+                        resolve(url);
+                    }
+                );
+            });
+        }
     },
 };
 </script>

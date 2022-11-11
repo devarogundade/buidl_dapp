@@ -8,7 +8,7 @@ import stakingJson from "../build/contracts/Staking.json"
 
 const Contracts = {
     initBuidlContract: async function(provider) {
-        if (this.getLastNetworkName() != 'bsc') return
+        // if (this.getLastNetworkName() != 'bsc') return
 
         const buidlContract = contract(buidlJson)
         if (!provider) {
@@ -22,14 +22,17 @@ const Contracts = {
         }
 
         try {
+            console.log('here');
             buidlContract.deployed().then(instance => {
+                console.log(instance);
                 $nuxt.$emit('buidl-contract', instance)
             })
         } catch (error) {}
     },
 
     initCourseContract: async function(provider) {
-        if (this.getLastNetworkName() != 'bsc') return
+        console.log(this.getLastNetworkName());
+        // if (this.getLastNetworkName() != 'bsc') return
 
         const courseContract = contract(courseJson)
         if (!provider) {
@@ -77,10 +80,12 @@ const Contracts = {
         if (this.getLastNetworkName() != 'bsc') return
 
         const stakingContract = contract(stakingJson)
+        console.log(stakingContract);
         if (!provider) {
             if (typeof ethereum === 'undefined') {
                 $nuxt.$emit('request-connect-wallet')
             } else {
+                console.log(ethereum);
                 stakingContract.setProvider(ethereum)
             }
         } else {
@@ -89,6 +94,7 @@ const Contracts = {
 
         try {
             stakingContract.deployed().then(instance => {
+                console.log(instance);
                 $nuxt.$emit('staking-contract', instance)
             })
         } catch (error) {}
@@ -105,9 +111,11 @@ const Contracts = {
 export default ({}, inject) => {
     inject('contracts', Vue.observable({
         initBuidlContract: async function(provider) {
+            console.log(provider);
             await Contracts.initBuidlContract(provider)
         },
         initCourseContract: async function(provider) {
+            console.log(provider);
             await Contracts.initCourseContract(provider)
         },
         initTokenContract: async function(provider) {

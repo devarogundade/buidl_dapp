@@ -16,7 +16,7 @@
         </div>
 
         <div class="verify" v-if="!fetching && (user && user.verified)">
-            <p><i class="fa-solid fa-circle-exclamation"></i> Hi!, create a new course</p>
+            <p><i class="fa-solid fa-circle-exclamation"></i> Hi!, create a new content</p>
             <router-link to="/app/courses/create">
                 <p class="stake scaleable">Create now</p>
             </router-link>

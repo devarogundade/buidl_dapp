@@ -10,13 +10,13 @@
 
         <div class="form">
             <div class="edit">
-                <p class="label">Course name *</p>
+                <p class="label">Content name *</p>
                 <input :class="getInputClassForName()" type="text" v-model="course.name" placeholder="Music producer" maxlength="60" />
                 <p v-if="errorName" class="error-text">{{ errorName }}</p>
             </div>
 
             <div class="edit">
-                <p class="label">Course description *</p>
+                <p class="label">Content description *</p>
                 <input :class="getInputClassForDescription()" v-model="course.description" type="text" placeholder="Compose a love song for an emotional movie" />
                 <p class="error-text" v-if="errorDescription">
                     {{ errorDescription }}
@@ -52,7 +52,7 @@
             </div>
 
             <div class="edit">
-                <p class="label">Course visibility</p>
+                <p class="label">Content visibility</p>
                 <div class="switch-con">
                     <p>Publish this course?</p>
                     <label class="switch">
@@ -63,7 +63,7 @@
             </div>
 
             <div class="edit">
-                <p class="label">Course certification</p>
+                <p class="label">Content certification</p>
                 <div class="switch-con">
                     <p>Want to issue certificate?</p>
                     <label class="switch">
@@ -82,13 +82,19 @@
             <div class="sign_up" v-if="!creating" v-on:click="createCourse()">
                 Save changes
             </div>
-            <div class="sign_up" v-else>Please wait..</div>
+            <div class="sign_up" v-else>Uploading. Please wait..</div>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL
+} from "firebase/storage";
 export default {
     data() {
         return {
@@ -142,6 +148,8 @@ export default {
             if (this.creating || this.courseContract == null) return;
             this.creating = false;
 
+            const id = Math.floor(Math.random() * 999999999999) + 1;
+
             if (this.selectedCategory == null) {
                 this.errorCategory = "Select a category";
                 return;
@@ -186,7 +194,7 @@ export default {
             if (this.photoFile != null) {
                 const base64 = await this.$ipfs.toBase64(this.photoFile);
                 const url = await this.$ipfs.upload(
-                    `courses/photos/${this.courseId}`,
+                    `courses/photos/${id}`,
                     base64
                 );
 
@@ -195,20 +203,14 @@ export default {
                 }
             }
 
-            if (this.previewFile != null) {
-                const base64 = await this.$ipfs.toBase64(this.previewFile);
-                const url = await this.$ipfs.upload(
-                    `courses/previews/${this.courseId}`,
-                    base64
-                );
-
-                if (url != null) {
-                    this.course.preview = url;
-                }
-            }
-
             try {
-                const id = Math.floor(Math.random() * 999999999999) + 1;
+                if (this.previewFile != null) {
+                    const url = await this.uploadVideo(this.previewFile)
+                    if (url != null) {
+                        this.course.preview = url
+                    }
+                }
+
                 const trx = await this.courseContract.createCourse(
                     id,
                     this.categories[this.selectedCategory].id,
@@ -273,6 +275,33 @@ export default {
                 return "filled";
             }
         },
+        uploadVideo(file, id) {
+            // Return a promise that will either resolve or emit an error
+            return new Promise((resolve, reject) => {
+                console.log('Uploading video ...');
+
+                const storage = getStorage();
+
+                const storageRef = ref(storage, 'previews/' + id);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    },
+                    (error) => {
+                        console.log(error);
+                        // An error occurred so inform the caller
+                        reject(error);
+                    },
+                    async () => {
+                        const url = await getDownloadURL(uploadTask.snapshot.ref)
+                        resolve(url);
+                    }
+                );
+            });
+        }
     },
 };
 </script>

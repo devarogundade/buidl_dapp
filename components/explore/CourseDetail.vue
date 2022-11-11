@@ -96,7 +96,7 @@
 
                         <div class="action" v-if="($auth.accounts.length > 0) && (course.address == $auth.accounts[0].toUpperCase())">
                             <router-link :to="`/app/course-builder/${$route.params.course}`">
-                                <div class="pay">Edit Course</div>
+                                <div class="pay">Edit Content</div>
                             </router-link>
                             <i class="fa-solid fa-heart-circle-plus"></i>
                         </div>
@@ -240,6 +240,7 @@ export default {
 
         subscribe: async function () {
             console.log(this.polygonContract);
+            console.log(this.buidlContract);
             if (this.buidlContract == null && this.polygonContract == null) return
 
             const network = this.$auth.getLastNetworkName() // bsc or polygon
