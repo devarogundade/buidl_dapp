@@ -5,7 +5,7 @@ Old Github (262 commits) -> https://github.com/devarogundade/buidl
 # Buidl - SocialFi for Creators and Learners
 ## _A Moralis X Google Cloud Hackathon Project_
 
-Buidl is a Social-Fi and Decentralized Autonomous Organization (DAO) for video content creators (e.g instructors, YouTubers, DIY makers, etc) anyone that shares their skills with other people online either for free or at a particular cost.
+Buidl is a Social-Fi for video content creators (e.g instructors, YouTubers, DIY makers, etc) anyone that shares their skills with other people online either for free or at a particular cost.
 
 Today, there are various existing Web2 solutions for this particular aspect, but we are taking it further leveraging blockchain technology to provide more secured, learning incentives with ownership to the community pattern.
 
