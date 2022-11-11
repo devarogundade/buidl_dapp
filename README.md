@@ -16,30 +16,43 @@ We have heavily used moralis stream and smart contract events, which has helped 
 
 ## Core Features
 - # Incentives for learning
-    Non-creators (i.e learners) will cover the largest base of the platform, it's a crucial part of the platform encourage and reward learners to retain them to use and enjoy the platform. 
-   
-    On each and every content (free/premium) a user purchases on the platform, given that they completed learning from the content a Buidl NFT will be minted for them randomly and based on the content price.
-    
-    The Buidl NFT serves as a coupon(discount) on premium contents, each nft has a percentage attribute which ranges from 0 ~ 50, this percenage attribute is the percentage of the nft discount on a course.
-    
-    The NFT can be traded in exchange for cryptocurrency to other users on marketplaces like Opensea.io
+    Non creators will cover the largest base of the platform, it is a crucial part of the platform to encourage and reward users to retain them to use and enjoy the       platform.
+
+    At random on every content(free or premium) a user subscribers to on the platform, given that they completed learning from the content a Buidl NFT will be minted       for them at random and based on the content price.
+
+    The Buidl NFT serves as a coupon(discount) on the premium contents, each NFT has a percentage attribute which ranges from 0 ~ 50, this percentage attribute is the     percentage of the nft discount on a premium course.
+
+    The NFT  can be listed in marketplaces like Opensea in exchange for cryptocurrencies to other users.
     
 - # Cryptocurrency payment and Guaranteed refund system using Staking protocol
-    The Buidl Token(BDL) is the only payment method of the platform, which will be available on DEX and CEX, cryptocurrency has given us the ability to ensure a guaranteed & instant refund policy compared to web2 where it's complex and slow to refund back through the channel the money was charged.
-    
-    Whenever content is purchased on the platform, the tokens are staked in the smart contract, and released to the creator after two weeks. Learners can create a refund and instantly receive back their tokens with a deduction of the sections of the content consumed already.
+    The Buidl Token (BDL)  is the only payment method of the platform, which will be available on CEX and DEX.
+
+    Cryptocurrency has given us the ability to break international payment barriers and ensures a guaranteed & instant refund policy compared to Web2.0 payments where     it is sometimes complex, slow or impossible to refund back through the gateway the money was charged.
+
+    Whenever a premium content is subscribed to on the platform, the tokens are staked in the smart contract, and released to the creator after two weeks.
+
+    Subscribers can initiate a refund within 2 weeks of subscription and instantly receive back their tokens with a deduction of the sections of the content consumed       already.
+
+    Premium contents will only be allowed to have a minimum content sections of 10, this is very important to keep subscribers as safe as possible.
 
 - # Account Bound Certificate (ERC4973)
-    Account Bound Certificate an ERC4973 token that cannot be transferred between addresses like normal Erc20 or Erc721. Creators can set quizzes (exams) for each content they create to mint an Account Bound certificate for subscribers(learners).
-    
-    On-chain certificates generatees the true ownership of the certificate, and can also be verified on the buidl explorer page by looking up for the cerfiticate id.
+    The Buidl Token (BDL)  is the only payment method of the platform, which will be available on CEX and DEX.
+
+    Cryptocurrency has given us the ability to break international payment barriers and ensures a guaranteed & instant refund policy compared to Web2.0 payments where     it is sometimes complex, slow or impossible to refund back through the gateway the money was charged.
+
+    Whenever a premium content is subscribed to on the platform, the tokens are staked in the smart contract, and released to the creator after two weeks.
+
+    Subscribers can initiate a refund within 2 weeks of subscription and instantly receive back their tokens with a deduction of the sections of the content consumed       already.
+
+    Premium contents are only allowed to have a minimum content sections of 10, this is very important to keep subscribers as safe as possible.
+
 
 - # Protection on premium contents
-    A better approach to protect videos online is creating custom players to restrict access by other players, this is very common in streaming services like netflix, etc.
+    A better approach to protect videos online is creating custom players to restrict access by other players, this is very common in streaming services like netflix,     etc.
 
-We have used this approach for the buidl player. It will authenticates users with the wallet and fetch all the contents they have subscribed to on the platform.
+    We have used this approach for the buidl player. It will authenticates users with the wallet and fetch all the contents they have subscribed to on the platform.
 
-Protecting videos online might not 100% achievable, as it can still be recorded from the device’s screen.
+    Protecting videos online might not 100% achievable, as it can still be recorded from the device’s screen.
 
 ## Revenue Model
 - We charge a 8% service fee from every earnings from the creators.
