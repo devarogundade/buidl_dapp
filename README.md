@@ -1,5 +1,7 @@
 Old Github (262 commits) -> https://github.com/devarogundade/buidl 
 
+*This Project has been hosted on a free host. You might experience a little delay at cold laod*
+
 # Buidl - SocialFi for Creators and Learners
 ## _A Moralis X Google Cloud Hackathon Project_
 
