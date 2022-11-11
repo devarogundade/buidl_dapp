@@ -49,8 +49,9 @@ We have heavily used moralis stream and smart contract events, which has helped 
    - Android (MVP)
    - IOS (Not Available)
    - Android TV (Not Available)
-
-![1668011087094_1004](https://user-images.githubusercontent.com/81397790/200886388-5a6be449-f64b-4461-ab01-6e2715a4b1c1.PNG)
+   
+![1668176574145_100](https://user-images.githubusercontent.com/81397790/201360087-ee63b845-e609-4b33-965f-7ebd3320181e.PNG)![1668176562091_100](https://user-images.githubusercontent.com/81397790/201360113-a4b55c9a-4a60-4215-9c72-146e05096bba.PNG)
+![1668176562091_100](https://user-images.githubusercontent.com/81397790/201360134-82cfe4e1-c837-4e5e-87c3-f442a5e33395.PNG)
 
 ## Hackathon Tracks
 - Binance Smart Chain => Social & Entertainment
@@ -77,8 +78,12 @@ We have heavily used moralis stream and smart contract events, which has helped 
 - Buidl Token Faucet https://buidl.netlify.app/mint
 
 ## Sneak peaks
-![Screenshot 2022-11-01 064225](https://user-images.githubusercontent.com/81397790/199166950-fc271011-4f1b-4228-a68e-5662bdd3e5e7.png)
-![Screenshot 2022-11-01 064520](https://user-images.githubusercontent.com/81397790/199167156-b1843670-e5a9-4c3e-a3a2-623ad833c2c5.png)
+![Screenshot 2022-11-11 151337](https://user-images.githubusercontent.com/81397790/201359847-65319d26-b7ed-4c6c-b36e-766be670108c.png)
+![Screenshot 2022-11-11 151356](https://user-images.githubusercontent.com/81397790/201359869-69eb1832-4ef3-4be8-8204-9b20460be3b0.png)
+![Screenshot 2022-11-11 151531](https://user-images.githubusercontent.com/81397790/201359890-a78b7402-f8f4-4674-be28-729c92d8e0ae.png)
+![Screenshot 2022-11-11 151601](https://user-images.githubusercontent.com/81397790/201359912-69e6daa4-5640-4b28-8595-716d13ab9422.png)
+![Screenshot 2022-11-11 151634](https://user-images.githubusercontent.com/81397790/201359946-96d3eadc-c5dc-475f-87db-769464f2f8fe.png)
+![Screenshot 2022-11-11 151705](https://user-images.githubusercontent.com/81397790/201359969-92f10132-66e5-48e4-97a7-86d05fbf489a.png)
 
 ## Other Services
 - Netlify
