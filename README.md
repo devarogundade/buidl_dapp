@@ -65,14 +65,14 @@ We have heavily used moralis stream and smart contract events, which has helped 
 ## Tech Stacks
 
 - Binance Smart Chain (Testnet)
-- Moralis Stream [#](https://github.com/devarogundade/Buidl/tree/master/moralis-stream-api) and Web3 APIs [#](https://github.com/devarogundade/Buidl/tree/master/plugins/moralis-apis)
-- IPFS (File System) [#](https://github.com/devarogundade/Buidl/tree/master/plugins/moralis-apis/ipfs.js)
-- Solidity (Smart Contract) [#](https://github.com/devarogundade/Buidl/tree/master/contracts)
+- Moralis Stream [#](https://github.com/devarogundade/buidl_dapp/tree/master/moralis-stream-api) and Web3 APIs [#](https://github.com/devarogundade/buidl_dapp/tree/master/plugins/moralis-apis)
+- IPFS (File System) [#](https://github.com/devarogundade/buidl_dapp/tree/master/plugins/moralis-apis/ipfs.js)
+- Solidity (Smart Contract) [#](https://github.com/devarogundade/buidl_dapp/tree/master/contracts)
 - Nuxtjs (Frontend)
 - Nodejs (Backend) 
 - Truffle
-- Axelar (Cross Chain Messaging) [#](https://github.com/devarogundade/Buidl/tree/master/contracts)
-- Google Cloud Firebase [#](https://github.com/devarogundade/Buidl/tree/master/plugins/firestore.js)
+- Axelar (Cross Chain Messaging) [#](https://github.com/devarogundade/buidl_dapp/tree/master/contracts)
+- Google Cloud Firebase [#](https://github.com/devarogundade/buidl_dapp/tree/master/plugins/firestore.js)
 - Android
 
 ## Demo
