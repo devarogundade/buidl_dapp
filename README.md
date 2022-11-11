@@ -35,26 +35,14 @@ We have heavily used moralis stream and smart contract events, which has helped 
     On-chain certificates generatees the true ownership of the certificate, and can also be verified on the buidl explorer page by looking up for the cerfiticate id.
 
 - # Protection on premium contents
-    We are encrypting video chunks to IPFS with our own unique file extension that can only be streamed by the buidl video players dapps, this is how we have managed to protect premium contents on the platform, only the content subscribers can the watch the contents.
-    
-    Protecting videos online is not 100% achievable, as it can still be recorded from the device's screen.
-    
-    The Buidl Video Player dapp simply authenticates users with their wallet, interacts with our smart contracts to verifies if the user is legitimate to watch the content.
+    A better approach to protect videos online is creating custom players to restrict access by other players, this is very common in streaming services like netflix, etc.
+
+We have used this approach for the buidl player. It will authenticates users with the wallet and fetch all the contents they have subscribed to on the platform.
+
+Protecting videos online might not 100% achievable, as it can still be recorded from the device’s screen.
 
 ## Revenue Model
 - We charge a 8% service fee from every earnings from the creators.
-
-## Buidl Video Player
-   Protecting videos online might not be 100% achievable but we are making it difficult to bypass them as possible with the buidl video player. This approach is well known in streaming services like netflix.
-   Premium videos bought on the buidl platform cannot be streamed on the web, it's required to have a buidl video player on any of the supported devices.
-   
-   - Android (MVP)
-   - IOS (Not Available)
-   - Android TV (Not Available)
-   
-   ![_new](https://user-images.githubusercontent.com/81397790/201361133-74a2ea14-e69e-4b43-8f99-ffbe93c17b7f.PNG)
-   ![1668176562091_100_new](https://user-images.githubusercontent.com/81397790/201361167-538b11a3-a0c7-45f3-bf23-3f16684b1e7e.PNG)
-
 
 ## Hackathon Tracks
 - Binance Smart Chain => Social & Entertainment
@@ -87,6 +75,9 @@ We have heavily used moralis stream and smart contract events, which has helped 
 ![Screenshot 2022-11-11 151601](https://user-images.githubusercontent.com/81397790/201359912-69e6daa4-5640-4b28-8595-716d13ab9422.png)
 ![Screenshot 2022-11-11 151634](https://user-images.githubusercontent.com/81397790/201359946-96d3eadc-c5dc-475f-87db-769464f2f8fe.png)
 ![Screenshot 2022-11-11 151705](https://user-images.githubusercontent.com/81397790/201359969-92f10132-66e5-48e4-97a7-86d05fbf489a.png)
+   
+   ![_new](https://user-images.githubusercontent.com/81397790/201361133-74a2ea14-e69e-4b43-8f99-ffbe93c17b7f.PNG)
+   ![1668176562091_100_new](https://user-images.githubusercontent.com/81397790/201361167-538b11a3-a0c7-45f3-bf23-3f16684b1e7e.PNG)
 
 ## Other Services
 - Netlify
