@@ -206,6 +206,7 @@ export default {
             try {
                 if (this.previewFile != null) {
                     const url = await this.uploadVideo(this.previewFile)
+                    console.log(url);
                     if (url != null) {
                         this.course.preview = url
                     }
@@ -224,6 +225,7 @@ export default {
                         from: this.$auth.accounts[0],
                     }
                 );
+
                 this.$router.push("/app/courses");
             } catch (error) {
                 console.log(error);

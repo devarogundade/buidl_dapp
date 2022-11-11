@@ -11,8 +11,8 @@
             <div class="edit">
                 <p class="label">Choose thumbnail *</p>
                 <div class="video">
-                    <video v-if="sections[selectedIndex].src != ''" :src="sections[selectedIndex].src"></video>
-                    <i v-if="sections[selectedIndex].src != ''" class="fa-solid fa-play"></i>
+                    <img v-if="sections[selectedIndex].src != ''" :src="sections[selectedIndex].thumbnail" />
+                    <!-- <i v-if="sections[selectedIndex].src != ''" class="fa-solid fa-play"></i> -->
                     <input v-on:change="chooseThumbnailFile($event)" accept="image/*" type="file" />
                 </div>
             </div>
@@ -304,13 +304,14 @@ export default {
 
 .video {
     width: 100%;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     overflow: hidden;
     margin-bottom: 40px;
     position: relative;
 }
 
-.video video {
+.video video, .video img {
     width: 100%;
     height: 320px;
     object-fit: cover;
