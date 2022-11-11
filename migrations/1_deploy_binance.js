@@ -6,7 +6,6 @@ const Buidl = artifacts.require("Buidl")
 const Staking = artifacts.require("Staking")
 const BdlCourse = artifacts.require("BdlCourse")
 const Base64 = artifacts.require("Base64")
-const Message = artifacts.require("Message")
     /* AXELAR */
 const binanceGateway = "0x4D147dCb984e6affEEC47e44293DA442580A3Ec0"
 const binanceGasReceiver = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
@@ -16,9 +15,6 @@ module.exports = async function(deployer) {
     await deployer.deploy(Base64)
     deployer.link(Base64, Buidl)
     deployer.link(Base64, BdlNft)
-
-    await deployer.deploy(Message)
-    deployer.link(Message, Buidl)
 
     await deployer.deploy(Staking);
     await deployer.deploy(BdlToken, "Buidl Token", "BDL");

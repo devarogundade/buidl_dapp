@@ -1722,7 +1722,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-11-09T23:14:31.027Z",
+  "updatedAt": "2022-11-11T04:27:15.600Z",
   "devdoc": {
     "details": "Library for managing uint256 to bool mapping in a compact and efficient way, providing the keys are sequential. Largelly inspired by Uniswap's https://github.com/Uniswap/merkle-distributor/blob/master/contracts/MerkleDistributor.sol[merkle-distributor].",
     "kind": "dev",

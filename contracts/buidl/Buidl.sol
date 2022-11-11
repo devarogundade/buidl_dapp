@@ -9,7 +9,6 @@ import {Staking} from "./Staking.sol";
 
 import {Models} from "./../base/Models.sol";
 import {Base64} from "./../base/Base64.sol";
-import {Message} from "./../axelar/Message.sol";
 
 import {AxelarExecutable} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executables/AxelarExecutable.sol";
 import {IAxelarGateway} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
@@ -20,7 +19,24 @@ import {StringToAddress, AddressToString} from "@axelar-network/axelar-gmp-sdk-s
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract Buidl is AxelarExecutable {
-    uint public testCount = 0;
+    // topics
+    uint constant SUBSCRIBE = 1;
+    uint constant UN_SUBSCRIBE = 2;
+    /* course */
+    uint constant CREATE_COURSE = 3;
+    uint constant UPDATE_COURSE = 4;
+    /* user */
+    uint constant CREATE_USER = 5;
+    uint constant UN_LOCK_CREATOR = 6;
+    uint constant LOCK_CREATOR = 7;
+    /* staking */
+    uint constant STAKE = 8;
+    uint constant UN_STAKE = 9;
+    /* revenue */
+    uint constant CLAIM_REVENUE = 10;
+    /* category */
+    uint constant CREATE_CATEGORY = 11;
+
     using StringToAddress for string;
     using AddressToString for address;
 
@@ -186,14 +202,11 @@ contract Buidl is AxelarExecutable {
         //     require(1 == 2, "Unkwomn source chain");
         // }
 
-        testCount++;
-
         // reveal payload as message
-        (uint topic, uint id, address sender, string memory extra) = Message
-            .unPackMessage(payload);
+        (uint topic, uint id, address sender, string memory extra) = unPackMessage(payload);
 
         /* message is a subscribe call */
-        if (topic == Message.SUBSCRIBE) {
+        if (topic == SUBSCRIBE) {
             uint offPercentage = 0;
             // uint256 nftId = stringToUint(extra);
             uint256 nftId = 0;
@@ -205,7 +218,7 @@ contract Buidl is AxelarExecutable {
         }
 
         /* message is an unsubscribe call */
-        if (topic == Message.UN_SUBSCRIBE) {
+        if (topic == UN_SUBSCRIBE) {
             _unSubscribe(id, sender);
         }
     }
@@ -270,6 +283,21 @@ contract Buidl is AxelarExecutable {
     }
 
     // ======== Helpers ======= //
+
+    function unPackMessage(bytes memory _data)
+        public
+        pure
+        returns (
+            uint _topic,
+            uint _id,
+            address _sender,
+            string memory extra
+        )
+    {
+        (uint _topic, uint _id, address _sender, string memory extra) = abi
+            .decode(_data, (uint, uint, address, string));
+        return (_topic, _id, _sender, extra);
+    }
 
     function compareStrings(string memory a, string memory b)
         public
