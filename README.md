@@ -12,8 +12,6 @@ Today, there are various existing Web2 solutions for this particular aspect, but
 To become a creator on the buidl platform requires a minimum stake of 2000 BDL tokens for a minimum duration of one year, if staking is withdrawn after one year the user is not a creator anymore until they restake a minimum of 2000 BDL back in the contract.
 A creator with suspicious activities and a high report rate is subjected to ban and their staked BDL token remains locked in the smart contract, this feature helps us maintain the DAO a safe community.
 
-We have heavily used moralis stream and smart contract events, which has helped us maintain a very low gas cost on the platform, and also introduce alternative gas options like $MATIC & $FANTOM with the help of Axelar a cross chain messaging protocol.
-
 ## Core Features
 - # Incentives for learning
     Non creators will cover the largest base of the platform, it is a crucial part of the platform to encourage and reward users to retain them to use and enjoy the       platform.
