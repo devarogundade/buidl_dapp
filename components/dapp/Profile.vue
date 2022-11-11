@@ -128,6 +128,7 @@ export default {
         this.getUser()
         this.$contracts.initStakingContract(this.$auth.provider)
         $nuxt.$on('staking-contract', (contract) => {
+            console.log(contract);
             this.getStakedBalance(contract)
         })
     },
