@@ -44,6 +44,20 @@
                     <img src="/images/certificate.png" alt="">
                 </div>
             </div>
+            <div class="feature">
+                <div class="image">
+                    <img src="/images/inter_payment.png" alt="">
+                </div>
+                <div class="text">
+                    <h3>
+                        Premium content protection.
+                    </h3>
+                    <p>
+                        Buidl protects premium videos with it's Buidl Video Player. <br> <br>
+                        Making it a safe place for creators to host their contents.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
