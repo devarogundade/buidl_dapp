@@ -2,10 +2,10 @@
 <div class="study">
     <div class="refund">
         <div v-if="unlockedSections.length < sections.length">
-            <div class="action" v-if="!refunding" v-on:click="refund()">
+            <div class="action" v-if="course && course.price > 0 && !refunding" v-on:click="refund()">
                 Refund this course
             </div>
-            <div class="action" v-else>Processing...</div>
+            <div class="action" v-if="course && course.price > 0 && refunding">Processing...</div>
         </div>
         <div v-if="course && course.certificate && (unlockedSections.length >= sections.length)">
             <div class="action mint" v-if="!minting" v-on:click="mintCertificate()">
@@ -21,10 +21,16 @@
             <p class="length">
                 <i class="fa-solid fa-clock"></i>{{ section.duration / 1000 }} seconds
             </p>
-            <p class="lock unlock" v-if="!unlockedSections.includes(section.sectionId)" v-on:click="viewSection(section.sectionId)">
+
+            <p class="lock play" v-if="course && course.price == 0">
+                <i class="fa-solid fa-play"></i> Watch
+                <!-- <video :src="section.src" :poster="section.thumbnail"></video> -->
+            </p>
+
+            <p class="lock unlock" v-if="course && course.price > 0 && !unlockedSections.includes(section.sectionId)" v-on:click="viewSection(section.sectionId)">
                 <i class="fa-solid fa-unlock"></i> Unlock
             </p>
-            <p class="lock play" v-else>
+            <p class="lock play" v-if="course && course.price > 0 && unlockedSections.includes(section.sectionId)">
                 <i class="fa-solid fa-play"></i> Unlocked
             </p>
         </div>

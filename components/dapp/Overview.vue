@@ -85,7 +85,7 @@
         </div>
 
         <div class="tab">
-            <router-link to="/app/course">
+            <router-link to="/app/courses">
                 <div class="supporters">
                     <h3>Courses</h3>
                 </div>

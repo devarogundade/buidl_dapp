@@ -119,8 +119,10 @@ export default {
     },
     created() {
         this.getCategories();
+
         this.$contracts.initCourseContract(this.$auth.provider);
         $nuxt.$on("course-contract", (contract) => {
+            console.log(contract);
             this.courseContract = contract;
         });
     },
@@ -136,7 +138,8 @@ export default {
             document.getElementById("cover").src = url;
         },
         createCourse: async function () {
-            if (this.creating || !this.courseContract) return;
+            console.log(this.courseContract);
+            if (this.creating || this.courseContract == null) return;
             this.creating = false;
 
             if (this.selectedCategory == null) {

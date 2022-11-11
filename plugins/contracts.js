@@ -44,9 +44,12 @@ const Contracts = {
 
         try {
             courseContract.deployed().then(instance => {
+                console.log(instance);
                 $nuxt.$emit('course-contract', instance)
             })
-        } catch (error) {}
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     initTokenContract: async function(provider) {

@@ -2,7 +2,7 @@
 <section>
     <div class="app-width">
         <div class="title">
-            <h3>Trending Courses</h3>
+            <h3>Trending Videos</h3>
             <router-link to="/explore">
                 <div class="action">Explore all <i class="fa-solid fa-arrow-right-long"></i></div>
             </router-link>
