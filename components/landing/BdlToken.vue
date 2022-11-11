@@ -3,7 +3,12 @@
     <div class="app-width">
         <div class="token">
             <h3>Tokenomics</h3>
-            <p class="desc">The total supply of BDL is 10,000,000,000 tokens, all minted at once. BDL Tokens will be distributed among 4 main groups:</p>
+            <p class="desc">
+                BUIDL TOKEN is the used for payment, refunds and rewards on the platform. <br> <br>
+                <b>Total Supply:</b> 1,000,000,000,000 <br>
+                <b>Token Name:</b> Buidl Token <br>
+                <b>Token Symbol:</b> BDL
+            </p>
 
             <div class="action">
                 <router-link to="/mint">
