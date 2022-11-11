@@ -46,7 +46,7 @@
             </div>
             <div class="feature">
                 <div class="image">
-                    <img src="/images/inter_payment.png" alt="">
+                    <img src="/images/protect.png" alt="">
                 </div>
                 <div class="text">
                     <h3>
