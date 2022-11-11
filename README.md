@@ -50,8 +50,9 @@ We have heavily used moralis stream and smart contract events, which has helped 
    - IOS (Not Available)
    - Android TV (Not Available)
    
-![1668176574145_100](https://user-images.githubusercontent.com/81397790/201360087-ee63b845-e609-4b33-965f-7ebd3320181e.PNG)![1668176562091_100](https://user-images.githubusercontent.com/81397790/201360113-a4b55c9a-4a60-4215-9c72-146e05096bba.PNG)
-![1668176562091_100](https://user-images.githubusercontent.com/81397790/201360134-82cfe4e1-c837-4e5e-87c3-f442a5e33395.PNG)
+   ![_new](https://user-images.githubusercontent.com/81397790/201361133-74a2ea14-e69e-4b43-8f99-ffbe93c17b7f.PNG)
+   ![1668176562091_100_new](https://user-images.githubusercontent.com/81397790/201361167-538b11a3-a0c7-45f3-bf23-3f16684b1e7e.PNG)
+
 
 ## Hackathon Tracks
 - Binance Smart Chain => Social & Entertainment
