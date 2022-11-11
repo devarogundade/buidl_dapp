@@ -1,5 +1,7 @@
 Old Github (262 commits) -> https://github.com/devarogundade/buidl 
 
+*This Project has been hosted on a free host. You might experience a little delay at cold laod*
+
 # Buidl - SocialFi for Creators and Learners
 ## _A Moralis X Google Cloud Hackathon Project_
 
@@ -49,8 +51,10 @@ We have heavily used moralis stream and smart contract events, which has helped 
    - Android (MVP)
    - IOS (Not Available)
    - Android TV (Not Available)
+   
+   ![_new](https://user-images.githubusercontent.com/81397790/201361133-74a2ea14-e69e-4b43-8f99-ffbe93c17b7f.PNG)
+   ![1668176562091_100_new](https://user-images.githubusercontent.com/81397790/201361167-538b11a3-a0c7-45f3-bf23-3f16684b1e7e.PNG)
 
-![1668011087094_1004](https://user-images.githubusercontent.com/81397790/200886388-5a6be449-f64b-4461-ab01-6e2715a4b1c1.PNG)
 
 ## Hackathon Tracks
 - Binance Smart Chain => Social & Entertainment
@@ -61,14 +65,14 @@ We have heavily used moralis stream and smart contract events, which has helped 
 ## Tech Stacks
 
 - Binance Smart Chain (Testnet)
-- Moralis Stream [#](https://github.com/devarogundade/Buidl/tree/master/moralis-stream-api) and Web3 APIs [#](https://github.com/devarogundade/Buidl/tree/master/plugins/moralis-apis)
-- IPFS (File System) [#](https://github.com/devarogundade/Buidl/tree/master/plugins/moralis-apis/ipfs.js)
-- Solidity (Smart Contract) [#](https://github.com/devarogundade/Buidl/tree/master/contracts)
+- Moralis Stream [#](https://github.com/devarogundade/buidl_dapp/tree/master/moralis-stream-api) and Web3 APIs [#](https://github.com/devarogundade/buidl_dapp/tree/master/plugins/moralis-apis)
+- IPFS (File System) [#](https://github.com/devarogundade/buidl_dapp/tree/master/plugins/moralis-apis/ipfs.js)
+- Solidity (Smart Contract) [#](https://github.com/devarogundade/buidl_dapp/tree/master/contracts)
 - Nuxtjs (Frontend)
 - Nodejs (Backend) 
 - Truffle
-- Axelar (Cross Chain Messaging) [#](https://github.com/devarogundade/Buidl/tree/master/contracts)
-- Google Cloud Firebase [#](https://github.com/devarogundade/Buidl/tree/master/plugins/firestore.js)
+- Axelar (Cross Chain Messaging) [#](https://github.com/devarogundade/buidl_dapp/tree/master/contracts)
+- Google Cloud Firebase [#](https://github.com/devarogundade/buidl_dapp/tree/master/plugins/firestore.js)
 - Android
 
 ## Demo
@@ -77,8 +81,12 @@ We have heavily used moralis stream and smart contract events, which has helped 
 - Buidl Token Faucet https://buidl.netlify.app/mint
 
 ## Sneak peaks
-![Screenshot 2022-11-01 064225](https://user-images.githubusercontent.com/81397790/199166950-fc271011-4f1b-4228-a68e-5662bdd3e5e7.png)
-![Screenshot 2022-11-01 064520](https://user-images.githubusercontent.com/81397790/199167156-b1843670-e5a9-4c3e-a3a2-623ad833c2c5.png)
+![Screenshot 2022-11-11 151337](https://user-images.githubusercontent.com/81397790/201359847-65319d26-b7ed-4c6c-b36e-766be670108c.png)
+![Screenshot 2022-11-11 151356](https://user-images.githubusercontent.com/81397790/201359869-69eb1832-4ef3-4be8-8204-9b20460be3b0.png)
+![Screenshot 2022-11-11 151531](https://user-images.githubusercontent.com/81397790/201359890-a78b7402-f8f4-4674-be28-729c92d8e0ae.png)
+![Screenshot 2022-11-11 151601](https://user-images.githubusercontent.com/81397790/201359912-69e6daa4-5640-4b28-8595-716d13ab9422.png)
+![Screenshot 2022-11-11 151634](https://user-images.githubusercontent.com/81397790/201359946-96d3eadc-c5dc-475f-87db-769464f2f8fe.png)
+![Screenshot 2022-11-11 151705](https://user-images.githubusercontent.com/81397790/201359969-92f10132-66e5-48e4-97a7-86d05fbf489a.png)
 
 ## Other Services
 - Netlify
