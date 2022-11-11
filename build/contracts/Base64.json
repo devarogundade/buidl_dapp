@@ -18,7 +18,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.16+commit.07a7930e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"base64\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/base/Base64.sol\":\"Base64\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":1500},\"remappings\":[]},\"sources\":{\"project:/contracts/base/Base64.sol\":{\"keccak256\":\"0x1d248af8c7ef4da723dd985364771a1ee0b079846e4f2df884346ff4dba48488\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://24785766db829d60e2f4bea2afe8baac3a5b56450b2b7c478ce343e5e7afc284\",\"dweb:/ipfs/QmNXtgbWcUCJMiguXr73HW3V4FUdpwTa52dZEyKmZiu9ZR\"]}},\"version\":1}",
@@ -3886,8 +3887,8 @@
     "97": {
       "events": {},
       "links": {},
-      "address": "0x38144d9EC18a36F3bF009117F23926aed77B39e3",
-      "transactionHash": "0x5811e443bb305524532351f4144cc04f8a21499af15d1c512306fd4e3f420612"
+      "address": "0xA0FeB21988981FFB4a120ED24F0B0336a77d9bb2",
+      "transactionHash": "0x21ce34942d43d422973b7c4f0bbc78d68acd8b9aaba0424bf60fcfa3016636c1"
     },
     "4002": {
       "events": {},
@@ -3903,7 +3904,8 @@
     }
   },
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-11-11T04:42:31.803Z",
+  "updatedAt": "2022-11-11T04:45:09.995Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
