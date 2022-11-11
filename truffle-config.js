@@ -27,14 +27,6 @@ module.exports = {
             timeoutBlocks: 9999999,
             skipDryRun: true,
             networkCheckTimeout: 999999999
-        },
-        fantom: {
-            provider: () => new HDWalletProvider(mnemonic, `https://rpc.ankr.com/fantom_testnet`),
-            network_id: 4002, // fantom testnet id
-            confirmations: 2,
-            timeoutBlocks: 9999999,
-            skipDryRun: true,
-            networkCheckTimeout: 999999999
         }
     },
 

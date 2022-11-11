@@ -137,6 +137,8 @@ contract Buidl is AxelarExecutable {
         uint offPercentage = 0;
         if (nftId != 0) {
             // offPercentage = _bdlNft.tokenPercentages[nftId];
+            // to do random
+            offPercentage = 4;
         }
         _subscribe(id, nftId, offPercentage, msg.sender);
     }
@@ -241,21 +243,22 @@ contract Buidl is AxelarExecutable {
 
         /* increase creator's unclaimed revenue */
         revenues[creator].unclaimed += price;
-        uint256 priceCharge = price;
+        uint256 _price = price;
 
         if (nftId > 0) {
             // coupon detected
             // verifies the sender id the true owner
             require(_bdlNft.ownerOf(nftId) == subscriber, "!authorized");
 
-            priceCharge = (price * (offPercentage / 100));
+            uint256 discount = (price * (offPercentage / 100));
+            _price = (price - discount);
 
             // burn the nft
             _bdlNft.burn(nftId);
         }
 
-        _bdlToken.approve(subscriber, address(this), priceCharge);
-        _bdlToken.transferFrom(subscriber, address(this), priceCharge);
+        _bdlToken.approve(subscriber, address(this), _price);
+        _bdlToken.transferFrom(subscriber, address(this), _price);
     }
 
     /* subscribe to a course */

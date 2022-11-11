@@ -6,7 +6,7 @@
                 <img src="/images/instructor.png" alt="">
             </div>
             <div class="text">
-                <h3>Get your courses to reach over 3000 learners around the world.</h3>
+                <h3>Get your contents to reach over 3000 learners around the world.</h3>
                 <router-link to="/app/profile">
                     <div class="action">Become a Creator</div>
                 </router-link>
